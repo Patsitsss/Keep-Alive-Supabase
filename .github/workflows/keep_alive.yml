@@ -1,5 +1,4 @@
 name: Keep Supabase Alive
-
 on:
   schedule:
     # Run at midnight (0 0 * *) on Sunday (0) and Friday(5)
@@ -15,3 +14,9 @@ jobs:
           curl -X GET "${{ secrets.SUPABASE_URL }}/rest/v1/pin?select=id&limit=1" \
           -H "apikey: ${{ secrets.SUPABASE_KEY }}" \
           -H "Authorization: Bearer ${{ secrets.SUPABASE_KEY }}"
+
+      - name: Send Webhook Notification
+        run: |
+          curl -X POST "${{ secrets.WEBHOOK_URL }}" \
+          -H "Content-Type: application/json" \
+          -d '{"text": "Supabase keep-alive ping sent successfully!"}'
