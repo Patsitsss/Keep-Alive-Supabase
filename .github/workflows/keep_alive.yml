@@ -19,4 +19,4 @@ jobs:
         run: |
           curl -X POST "${{ secrets.WEBHOOK_URL }}" \
           -H "Content-Type: application/json" \
-          -d '{"text": "Supabase keep-alive ping sent successfully!"}'
+          -d '{"content": "🔄 **Supabase Keep-Alive:** Το ping στάλθηκε επιτυχώς!"}'
